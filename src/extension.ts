@@ -1,3 +1,4 @@
+import { posix } from 'path'
 import * as vscode from 'vscode'
 
 // this method is called when vs code is activated
@@ -41,12 +42,11 @@ export function activate (context: vscode.ExtensionContext) {
     let match
     while ((match = regEx.exec(text))) {
       const decTxt = getDecTxt(match[0])
-      const startPos = activeEditor.document.positionAt(match.index)
-      const endPos = activeEditor.document.positionAt(match.index)
+      const position = activeEditor.document.positionAt(match.index)
       const decoration: vscode.DecorationOptions = {
-        range: new vscode.Range(startPos, endPos),
+        range: new vscode.Range(position, position),
         renderOptions: {
-          after: {
+          before: {
             contentText: decTxt,
             color: decorationColor
           }
