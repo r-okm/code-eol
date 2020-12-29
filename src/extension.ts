@@ -1,4 +1,3 @@
-import { posix } from 'path'
 import * as vscode from 'vscode'
 
 // this method is called when vs code is activated
