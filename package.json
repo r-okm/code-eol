@@ -1,11 +1,11 @@
 {
   "name": "code-eol",
-  "displayName": "code-eol",
+  "displayName": "code-eol(blame annotation friendly)",
   "description": "Display newline characters in your code",
-  "version": "0.3.3",
-  "publisher": "sohamkamani",
+  "version": "1.0.0",
+  "publisher": "r-okm",
   "repository": {
-    "url": "https://github.com/sohamkamani/code-eol"
+    "url": "https://github.com/r-okm/code-eol"
   },
   "license": "MIT",
   "engines": {
