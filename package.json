@@ -1,8 +1,8 @@
 {
   "name": "code-eol",
-  "displayName": "code-eol(blame annotation friendly)",
+  "displayName": "code-eol (fixed conflicting with Gitlens)",
   "description": "Display newline characters in your code",
-  "version": "1.0.0",
+  "version": "0.1.0",
   "publisher": "r-okm",
   "repository": {
     "url": "https://github.com/r-okm/code-eol"
