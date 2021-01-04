@@ -12,5 +12,5 @@ code --install-extension code-eol-0.1.0.vsix
 
 ### install via GUI
 
-`Install from VSIX`
+`Install from VSIX...`  
 ![install-via-gui](assets/install-via-gui.png)
