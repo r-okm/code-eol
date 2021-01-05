@@ -2,11 +2,15 @@
 
 forked from [sohamkamani/code-eol](https://github.com/sohamkamani/code-eol)
 
+## Download
+
+[Latest release](https://github.com/r-okm/code-eol/releases/latest)
+
 ## Install
 
 ### install via command line
 
-```shell
+```bash
 code --install-extension code-eol-0.1.0.vsix
 ```
 
