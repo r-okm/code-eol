@@ -11,7 +11,7 @@ forked from [sohamkamani/code-eol](https://github.com/sohamkamani/code-eol)
 ### install via command line
 
 ```bash
-code --install-extension code-eol-0.1.0.vsix
+code --install-extension code-eol-0.1.1.vsix
 ```
 
 ### install via GUI
