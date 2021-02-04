@@ -2,7 +2,7 @@
   "name": "code-eol",
   "displayName": "code-eol (fixed conflicting with Gitlens)",
   "description": "Display newline characters in your code",
-  "version": "0.1.1",
+  "version": "0.2.0",
   "publisher": "r-okm",
   "repository": {
     "url": "https://github.com/r-okm/code-eol"
@@ -20,7 +20,7 @@
   "main": "./out/extension",
   "scripts": {
     "package": "vsce package",
-    "install:extension": "code --install-extension code-eol-0.1.1.vsix"
+    "install:extension": "code --install-extension code-eol-0.2.0.vsix"
   },
   "devDependencies": {
     "@types/node": "7.0.4",
