@@ -1,16 +1,16 @@
-import * as vscode from 'vscode'
+import { DecorationOptions, ExtensionContext, Position, Range, window, workspace, WorkspaceConfiguration } from 'vscode'
 
 // this method is called when vs code is activated
-export function activate (context: vscode.ExtensionContext) {
+export function activate (context: ExtensionContext) {
   // create a decorator type that we use to decorate small numbers
-  const nullDecoration = vscode.window.createTextEditorDecorationType({})
+  const nullDecoration = window.createTextEditorDecorationType({})
 
-  let activeEditor = vscode.window.activeTextEditor
+  let activeEditor = window.activeTextEditor
   if (activeEditor) {
     updateDecorations()
   }
 
-  vscode.window.onDidChangeActiveTextEditor(
+  window.onDidChangeActiveTextEditor(
     (editor) => {
       activeEditor = editor
       if (editor) {
@@ -20,8 +20,14 @@ export function activate (context: vscode.ExtensionContext) {
     null,
     context.subscriptions
   )
-
-  vscode.workspace.onDidChangeTextDocument(
+  window.onDidChangeTextEditorSelection(
+    () => {
+      updateDecorations()
+    },
+    null,
+    context.subscriptions
+  )
+  workspace.onDidChangeTextDocument(
     () => {
       updateDecorations()
     },
@@ -33,39 +39,47 @@ export function activate (context: vscode.ExtensionContext) {
     if (!activeEditor) {
       return
     }
-    const configuration = vscode.workspace.getConfiguration('code-eol')
-    const decorationColor = configuration.color
-    const regEx = /(\r(?!\n))|(\r?\n)/g
-    const text = activeEditor.document.getText()
-    const newLines: vscode.DecorationOptions[] = []
-    let match
-    while ((match = regEx.exec(text))) {
+
+    const config: WorkspaceConfiguration = workspace.getConfiguration('code-eol')
+    const decorationColor: any = config.color
+
+    const currentCursorLine: number = activeEditor.selection.active.line
+
+    const regEx: RegExp = /(\r(?!\n))|(\r?\n)/g
+    const text: string = activeEditor.document.getText()
+
+    const newLineDecorations: DecorationOptions[] = []
+    let match: RegExpExecArray
+    while (match = regEx.exec(text)) {
       const decTxt = getDecTxt(match[0])
-      const position = activeEditor.document.positionAt(match.index)
-      const decoration: vscode.DecorationOptions = {
-        range: new vscode.Range(position, position),
+      const position: Position = activeEditor.document.positionAt(match.index)
+      const decoration: DecorationOptions = {
+        range: new Range(position, position),
         renderOptions: {
-          before: {
+          after: {
             contentText: decTxt,
             color: decorationColor
           }
         }
       }
-      newLines.push(decoration)
+      if (position.line !== currentCursorLine) newLineDecorations.push(decoration)
     }
-    activeEditor.setDecorations(nullDecoration, newLines)
+
+    activeEditor.setDecorations(nullDecoration, newLineDecorations)
   }
 }
 
-function getDecTxt (match) {
+function getDecTxt (match: string): EolChar {
   switch (match) {
-    case '\n':
-      return '↓'
-    case '\r\n':
-      return '↵'
-    case '\r':
-      return '←'
+    case "\n":
+      return "↓"
+    case "\r\n":
+      return "↵"
+    case "\r":
+      return "←"
     default:
-      return ''
+      return ""
   }
 }
+
+type EolChar = "↓" | "↵" | "←" | ""
