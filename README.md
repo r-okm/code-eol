@@ -6,15 +6,14 @@ forked from [sohamkamani/code-eol](https://github.com/sohamkamani/code-eol)
 
 [Latest release](https://github.com/r-okm/code-eol/releases/latest)
 
-## Install
-
-### install via command line
+## Package
 
 ```bash
-code --install-extension code-eol-0.1.1.vsix
+npm run package
 ```
 
-### install via GUI
+## Install
 
-`Install from VSIX...`  
-![install-via-gui](assets/install-via-gui.png)
+```bash
+npm run install:extension
+```

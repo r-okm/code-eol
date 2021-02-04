@@ -19,17 +19,16 @@
   ],
   "main": "./out/extension",
   "scripts": {
-    "watch": "tsc -watch -p ./",
-    "postinstall": "node ./node_modules/vscode/bin/install"
+    "package": "vsce package",
+    "install:extension": "code --install-extension code-eol-0.1.1.vsix"
   },
   "devDependencies": {
-    "vscode": "^1.1.5",
+    "@types/node": "7.0.4",
     "typescript": "^2.5.3",
-    "@types/node": "7.0.4"
+    "vsce": "^1.85.0",
+    "vscode": "^1.1.5"
   },
-  "dependencies": {
-    "vsce": "^1.36.2"
-  },
+  "dependencies": {},
   "contributes": {
     "configuration": [
       {
